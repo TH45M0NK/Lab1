@@ -12,15 +12,30 @@ async function setup() {
   const face = await loadImage("Alex-Grey-eye.jpg");
 
   // Make a turtle near the bottom left, facing up.
-  turtle = new KardunTurtle(200, 420, face);
+  turtle = new KardunTurtle(400, 300, face);
 
   giveInstructions();
+
+  turtle.penColor("#ffd900");
+
+  // we had no instructions for the turtle to draw a circle...
+  // so I we move forward 1 pixel and rotate 1 degree, 360 times, we can draw a circle.
+  // # repeat the forward and turn actions 360 times to draw a circle
+  // now let's do it 6 times to make the seed of life pattern!
+  turtle.repeat(6, () => {
+    // Draw one complete circle
+    turtle.repeat(360, () => {
+      turtle.forward(2);
+      turtle.right(1);
+    });
+
+    // turn 60 degrees to angle the next circle perfectly
+    turtle.right(60);
+  });
 }
 
 // ---------------------------------------------------------------
 // YOUR INSTRUCTIONS GO HERE
-turtle.forward(1000);
-
 // ---------------------------------------------------------------
 
 function giveInstructions() {
